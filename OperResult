@@ -5,6 +5,8 @@ using System.Text;
 
 namespace melenaos
 {
+    public class OperResult : OperResult<Object> { }
+    
     public class OperResult<T>
     {
         public string ErrorCode { get; private set; }
@@ -39,39 +41,5 @@ namespace melenaos
 
     }
 
-    public class OperResult
-    {
-        public string ErrorCode { get; private set; }
-        public string Message { get; private set; }
-        public object Data { get; private set; }
-        public bool Ok { get; private set; }
-        public string IncidentNumber { get; set; }
-
-        public static OperResult Success(object data = null)
-        {
-            return new OperResult(data);
-        }
-
-        public static OperResult Error(string errorCode, string message, string incidentNumber = null, object data = null)
-        {
-            return new OperResult(errorCode, message, incidentNumber, data);
-        }
-
-        private OperResult(object data)
-        {
-            this.Data = data;
-            Ok = true;
-        }
-        private OperResult(string errorCode, string message, string incidentNumber = null, object data = null)
-        {
-            this.ErrorCode = errorCode;
-            this.Message = message;
-            this.IncidentNumber = incidentNumber;
-            this.Ok = false;
-            this.Data = data;
-        }
-
-
-
-    }
+   
 }
